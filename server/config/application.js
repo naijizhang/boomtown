@@ -5,7 +5,22 @@ const fallback = require('express-history-api-fallback');
 const path = require('path');
 
 module.exports = (app) => {
-  const PORT = process.env.PORT || 8080;
+
+  /***
+   * Setting environment variables
+   *  PORT
+   *  PG_HOST
+   *  PG_USER
+   *  PG_PASSWORD
+   *  PG_DB
+   *  JWT_SECRET
+   */
+  app.set('PORT', process.env.PORT || 8080);
+  app.set('PG_HOST', process.env.PG_HOST || 'localhost');
+  app.set('PG_USER', process.env.PG_USER || 'boomtown');
+  app.set('PG_PASSWORD', process.env.PG_PASSWORD || 'boomtown');
+  app.set('PG_DB', process.env.PG_DB || 'boomtown');
+
 
   /**
    *  @TODO: Configuration Variables
@@ -44,7 +59,7 @@ module.exports = (app) => {
    *
    *  For example: app.set('PG_HOST', process.env.PG_HOST || 'localhost')
    */
-
+ 
   app.use(cookieParser());
 
   if (process.env.NODE_ENV === 'production') {
