@@ -112,7 +112,32 @@ module.exports = postgres => {
         throw error;
       }
     },
-    async saveNewItem({ item, user }) {
+    async saveNewItem( item, user ) {
+      /***
+       * Project 1 Stretch Goal
+       */
+      const { title, description, tags } = item;
+      let queryNewItemTagRelation='';
+      let queryNewTags='';
+      tags.map((tag) => 
+        {queryNewItemTagRelation+=`(${tag.id},(SELECT MAX(id) FROM items)),`;
+        queryNewTags+= `(${tag.id},'${tag.title}'),`}
+      );
+      queryNewItemTagRelation= queryNewItemTagRelation.substring(0, queryNewItemTagRelation.length - 1);
+      queryNewTags= queryNewTags.substring(0, queryNewTags.length - 1);
+      
+      try{
+          await postgres.query({
+          text: `INSERT INTO items(title, description, itemowner) VALUES('${title}','${description}',${parseInt(user)});`+
+          `INSERT INTO itemtags(tagid, itemid) VALUES ` +queryNewItemTagRelation +`;`+
+          `INSERT INTO tags (id, title) VALUES `+queryNewTags+` ON CONFLICT (id) DO NOTHING;`,
+        });
+      }catch(error){
+        throw error;
+      }
+      return true;
+      //----------------------------------------
+
       /**
        *  @TODO: Adding a New Item
        *

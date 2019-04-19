@@ -62,6 +62,6 @@ type Query {
 }
 
 type Mutation {
-  addItem: Boolean
+  addItem(item:NewItemInput): Boolean
 }
 `;
