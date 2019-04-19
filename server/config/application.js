@@ -5,15 +5,6 @@ const fallback = require('express-history-api-fallback');
 const path = require('path');
 
 module.exports = app => {
-  /***
-   * Setting environment variables
-   *  PORT
-   *  PG_HOST
-   *  PG_USER
-   *  PG_PASSWORD
-   *  PG_DB
-   *  JWT_SECRET
-   */
   const PORT = process.env.PORT || 8080;
   app.set('PORT', PORT);
   app.set('PG_HOST', process.env.PG_HOST || 'localhost');
