@@ -1,5 +1,7 @@
 # Boomtown 🏙
 
+In this project, I learned how to set up express server and use Apollo to run graphQL and connect the Postgres database. I successfully get items, tags, and users from the database and the project is ready to move to the next stage.
+
 ## Server
 
 Commands must be run from the `server` directory:
