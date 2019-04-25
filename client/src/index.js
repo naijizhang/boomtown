@@ -4,7 +4,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 // @TODO: Uncomment each module as needed in your client app
 import { ApolloProvider } from 'react-apollo';
-// import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom';
 // import { Provider as ReduxProvider } from 'react-redux'
 // -------------------------------
 
@@ -23,6 +23,7 @@ import client from './apollo';
  * have access to data exposed by your GraphQL API.
  */
 
+import Layout from './routes/Layout';
 /**
  * @TODO: Add Routing
  *
@@ -60,7 +61,6 @@ import client from './apollo';
 import Home from './pages/Home';
 // -------------------------------
 
-import ItemsGrid from './components/ItemsGrid'
 import './index.css';
 
 const App = () => {
@@ -68,7 +68,9 @@ const App = () => {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <ApolloProvider client={client}>
-          <ItemsGrid />
+        <BrowserRouter>
+          <Layout />
+        </BrowserRouter>
       </ApolloProvider>
     </MuiThemeProvider>
   );
