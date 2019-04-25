@@ -1,14 +1,17 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
+import ItemCard from '../../components/ItemCard';
+import { withStyles } from '@material-ui/core/styles';
+import styles from './styles';
 
-function ItemsGrid() {
+function ItemsGrid({items}) {
   return (
-    <Grid>
-     <p>1234567</p>
-   </Grid>
+    <Grid container spacing={40}>
+      {items? items.map(item=>(
+        <ItemCard item={item} key={item.id}/>
+      )): null}
+        
+    </Grid>
   );
 }
-  
-  export default ItemsGrid;
-  
-  
+export default withStyles(styles)(ItemsGrid);
