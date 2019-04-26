@@ -1,16 +1,17 @@
 const styles = theme => ({
-    layout: {
-        width: 'auto',
-        marginLeft: theme.spacing.unit * 3,
-        marginRight: theme.spacing.unit * 3,
-        [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
-          width: 1100,
-          marginLeft: 'auto',
-          marginRight: 'auto',
-        },
-      },
-      cardGrid: {
-        padding: `${theme.spacing.unit * 8}px 0`,
-      },
-  });
-  export default styles;
+  layout: {
+    width: '100%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    padding: 80,
+
+    [theme.breakpoints.between('xs', 'sm')]: {
+      padding: 16
+    },
+    [theme.breakpoints.up('sm')]: {
+      padding: 80
+    }
+  },
+
+});
+export default styles;
