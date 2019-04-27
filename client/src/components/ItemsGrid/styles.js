@@ -4,13 +4,17 @@ const styles = theme => ({
     marginLeft: 'auto',
     marginRight: 'auto',
     padding: 80,
+    paddingTop:144,
 
     [theme.breakpoints.between('xs', 'sm')]: {
-      padding: 16
+      padding: 16,
+      paddingTop:96,
     },
     [theme.breakpoints.up('sm')]: {
-      padding: 80
-    }
+      padding: 80,
+      paddingTop:144,
+    },
+    
   },
 
 });
