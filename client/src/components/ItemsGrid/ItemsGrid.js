@@ -10,7 +10,7 @@ function ItemsGrid({ classes, items }) {
     <div className={classNames(classes.layout)}>
       <Grid
         container
-        justify="center"
+        justify="flex-start"
         spacing={16}
       >
         {items
