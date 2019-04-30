@@ -8,13 +8,15 @@ import styles from './styles';
 function ItemsGrid({ classes, items }) {
   return (
     <div className={classNames(classes.layout)}>
-      <Grid
-        container
-        justify="flex-start"
-        spacing={16}
-      >
+      <Grid container justify="flex-start" spacing={16}>
         {items
-          ? items.map(item => <ItemCard item={item} key={item.id} />)
+          ? items.map(item => (
+              <ItemCard
+                item={item}
+                key={item.id}
+                breakpoints={{ xs: 12, sm: 12, md: 6, lg: 4 }}
+              />
+            ))
           : null}
       </Grid>
     </div>

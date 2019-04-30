@@ -14,7 +14,7 @@ const styles = theme => ({
   },
   buttonLeft: {
     margin: theme.spacing.unit,
-    borderRadius: 100,
+    borderRadius: 50,
     boxShadow: '0 0px 0px 0px',
     color: 'black',
     height: 45,
@@ -24,7 +24,7 @@ const styles = theme => ({
   },
   buttonRight: {
     margin: theme.spacing.unit,
-    borderRadius: 100,
+    borderRadius: 50,
     boxShadow: '0 0px 0px 0px',
     color: 'black',
     height: 45,

@@ -12,12 +12,18 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 import moment from 'moment';
-function ItemCard({ classes, item }) {
-  const dateToStore = item.created.substring(4,24);
+function ItemCard({ classes, item, breakpoints }) {
+  const dateToStore = item.created.substring(4, 24);
   console.log(dateToStore);
-  const momentDate = moment(dateToStore,'MMM DD YYYY HH:mm:ss')
+  const momentDate = moment(dateToStore, 'MMM DD YYYY HH:mm:ss');
   return (
-    <Grid item xs={12} sm={12} md={6} lg={4}>
+    <Grid
+      item
+      xs={breakpoints.xs}
+      sm={breakpoints.sm}
+      md={breakpoints.md}
+      lg={breakpoints.lg}
+    >
       <Card className={classes.card}>
         <CardMedia
           className={classes.cardMedia}
@@ -26,12 +32,12 @@ function ItemCard({ classes, item }) {
         />
         <CardHeader
           avatar={
-            <Avatar round='true' className={classes.avatar}>
-               <Gravatar email={item.itemowner.email}/>
+            <Avatar round="true" className={classes.avatar}>
+              <Gravatar email={item.itemowner.email} />
             </Avatar>
           }
           title={item.itemowner.fullname}
-          subheader= {momentDate.fromNow()}
+          subheader={momentDate.fromNow()}
         />
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom variant="title" component="h2">
