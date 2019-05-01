@@ -13,7 +13,7 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 import moment from 'moment';
 function ItemCard({ classes, item, breakpoints }) {
-  const dateToStore = item.created.substring(4, 24);
+  const dateToStore = item.created.toString().substring(4, 24);
   console.log(dateToStore);
   const momentDate = moment(dateToStore, 'MMM DD YYYY HH:mm:ss');
   return (
