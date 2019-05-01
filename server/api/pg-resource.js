@@ -1,18 +1,8 @@
-// function tagsQueryString(tags, itemid, result) {
-//   const length = tags.length;
-//   return length === 0
-//     ? `${result};`
-//     : tags.shift() &&
-//         tagsQueryString(
-//           tags,
-//           itemid,
-//           `${result}($${tags.length + 1}, ${itemid})${length === 1 ? '' : ','}`
-//         );
-// }
+//rewrite tagsQueryString in other way
 function tagsQueryString(tags, itemid, result) {
   let res = '';
   tags.map((value, index) => {
-    res += `($${index+1},${itemid})`;
+    res += `($${index + 1},${itemid})`;
     index < tags.length - 1 ? (res += ',') : (res += ';');
   });
   return res;
@@ -22,7 +12,8 @@ module.exports = postgres => {
   return {
     async createUser({ fullname, email, password }) {
       const newUserInsert = {
-        text: '', // @TODO: Authentication - Server
+        text:
+          'INSERT INTO users(fullname,email,password) VALUES ($1,$2,$3) RETURNING *',
         values: [fullname, email, password]
       };
       try {
@@ -41,7 +32,7 @@ module.exports = postgres => {
     },
     async getUserAndPasswordForVerification(email) {
       const findUserQuery = {
-        text: '', // @TODO: Authentication - Server
+        text: 'SELECT * FROM users WHERE email=$1;',
         values: [email]
       };
       try {
