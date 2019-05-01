@@ -8,7 +8,7 @@ const { DateScalar } = require('../custom-types');
 
 module.exports = app => {
   return {
-   // Date: DateScalar,
+    // Date: DateScalar,
 
     Query: {
       viewer() {
@@ -44,7 +44,7 @@ module.exports = app => {
           throw new ApolloError(e);
         }
       },
-      async tags(parent,args,{pgResource}) {
+      async tags(parent, args, { pgResource }) {
         try {
           const tags = await pgResource.getTags();
           return tags;
@@ -55,7 +55,7 @@ module.exports = app => {
     },
 
     User: {
-      async items({id},args,{pgResource}) {
+      async items({ id }, args, { pgResource }) {
         try {
           const items = await pgResource.getItemsForUser(id);
           return items;
@@ -63,7 +63,7 @@ module.exports = app => {
           throw new ApolloError(e);
         }
       },
-      async borrowed({id},args,{pgResource}) {
+      async borrowed({ id }, args, { pgResource }) {
         try {
           const items = await pgResource.getBorrowedItemsForUser(id);
           return items;
@@ -74,7 +74,7 @@ module.exports = app => {
     },
 
     Item: {
-      async itemowner({itemowner}, args, { pgResource }) {
+      async itemowner({ itemowner }, args, { pgResource }) {
         try {
           const user = await pgResource.getUserById(itemowner);
           return user;
@@ -83,16 +83,16 @@ module.exports = app => {
         }
       },
 
-      async tags({id},args,{pgResource}) {
+      async tags({ id }, args, { pgResource }) {
         try {
-          const tags = await pgResource. getTagsForItem(id);
+          const tags = await pgResource.getTagsForItem(id);
           return tags;
         } catch (e) {
           throw new ApolloError(e);
         }
       },
 
-      async borrower({borrower}, args, { pgResource }) {
+      async borrower({ borrower }, args, { pgResource }) {
         try {
           const user = await pgResource.getUserById(borrower);
           return user;
@@ -107,23 +107,23 @@ module.exports = app => {
       // ...authMutations(app),
       // -------------------------------
 
-      async addItem(parent, {item}, { pgResource }, info) {
+      async addItem(parent, { item }, { pgResource }, info) {
         try {
-          const user = 1;
-          const result = await pgResource.saveNewItem(item,user);
-          return result;
+          //image = await image;
+          //const user = await jwt.decode(context.token, app.get('JWT_SECRET'));
+          const user = {
+            id: 1
+          };
+          //const newItem = await context.pgResource.saveNewItem({
+            const newItem = await pgResource.saveNewItem({
+            item: item,
+            //image: args.image,
+            user
+          });
+          return newItem;
         } catch (e) {
           throw new ApolloError(e);
         }
-
-        // image = await image;
-        // const user = await jwt.decode(context.token, app.get('JWT_SECRET'));
-        // const newItem = await context.pgResource.saveNewItem({
-        //   item: args.item,
-        //   image: args.image,
-        //   user
-        // });
-        // return newItem;
       }
     }
   };
