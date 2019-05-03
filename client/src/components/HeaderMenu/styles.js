@@ -42,6 +42,9 @@ const styles = theme => ({
     background: 'rgba(0, 0, 0, 1)',
     fontSize: 20,
     padding: 1
+  },
+  menulogo:{
+   marginRight:15
   }
 });
 export default styles;
