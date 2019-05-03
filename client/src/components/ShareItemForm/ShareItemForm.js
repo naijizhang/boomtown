@@ -39,12 +39,11 @@ class ShareForm extends Component {
     });
   };
   triggerInputImage = () => {
-    if(!this.state.fileSelected){
+    if (!this.state.fileSelected) {
       this.fileInput.current.click();
-    } else{
+    } else {
       this.resetFileInput();
     }
-    
   };
   dispatchUpdate(values, tags, updateItem) {
     if (!values.imageurl && this.state.fileSelected) {
@@ -107,7 +106,8 @@ class ShareForm extends Component {
       }
     };
     const onSubmit = values => {
-      this.saveItem(values, tags); //tags
+      //this.saveItem(values, tags); //tags
+      window.alert(JSON.stringify(values, 0, 2));
     };
 
     return (
@@ -137,10 +137,7 @@ class ShareForm extends Component {
                         className={classes.longItem}
                         onClick={this.triggerInputImage}
                       >
-                      {this.state.fileSelected?
-                      'RESET':'SELECT AN IMAGE'
-                      }
-                        
+                        {this.state.fileSelected ? 'RESET' : 'SELECT AN IMAGE'}
                       </Button>
                       <input
                         ref={this.fileInput}

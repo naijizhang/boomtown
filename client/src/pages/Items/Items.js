@@ -4,12 +4,9 @@ import ItemsGrid from '../../components/ItemsGrid';
 const Items = ({ classes, items }) => {
   return (
     <div>
-      
-      <ItemsGrid items={items}/>
-      
+      <ItemsGrid items={items} />
     </div>
   );
 };
 
 export default Items;
-
