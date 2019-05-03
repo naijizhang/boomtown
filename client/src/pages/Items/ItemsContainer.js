@@ -14,7 +14,6 @@ function ItemsContainer({ classes }) {
           <Query query={ALL_ITEMS_QUERY} variables={{ filter: viewer.id }}>
             {({ loading, error, data }) => {
               if (loading) return <FullScreenLoader inverted />;
-              // console.log(data);
               if (error) return <p>{`Error! ${error.message}`}</p>;
               return <Items classes={classes} items={data.items} />;
             }}

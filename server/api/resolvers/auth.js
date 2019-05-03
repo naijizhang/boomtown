@@ -19,7 +19,6 @@ module.exports = app => {
   return {
     async signup(parent, args, context) {
       const {} = args;
-      console.log(args);
       try {
         const hashedPassword = await bcrypt.hash(args.user.password, 10);
         const user = await context.pgResource.createUser({
@@ -43,14 +42,12 @@ module.exports = app => {
 
     async login(parent, args, context) {
       const { email, password } = args.user;
-      console.log(email + password);
 
       //get user from database
       try {
         const user = await context.pgResource.getUserAndPasswordForVerification(
           args.user.email
         );
-        console.log(user);
         if( !user) throw 'User was not found.';
         const valid = await bcrypt.compare(password, user.password);
         if (!valid) throw 'User / password was wrong.';

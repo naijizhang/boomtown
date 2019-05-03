@@ -34,7 +34,6 @@ class AccountForm extends Component {
           this.state.formToggle
             ? loginMutation(user).catch(error => this.setState({ error }))
             : signupMutation(user).catch(error => this.setState({ error }));
-            console.log(this.state.error);
         }}
         validate={validate.bind(this)}
         render={({ handleSubmit, pristine, invalid, submitting, form }) => (
