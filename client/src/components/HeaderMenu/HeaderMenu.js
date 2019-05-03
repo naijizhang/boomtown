@@ -12,13 +12,14 @@ import powerLogo from '../../images/power.svg';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
-
+import { Link } from 'react-router-dom';
+import { LOGOUT_MUTATION, VIEWER_QUERY } from '../../apollo/queries';
+import { graphql, compose } from 'react-apollo';
 class HeaderMenu extends Component {
-  
   state = {
     anchorEl: null
   };
-  
+
   handleClick = event => {
     this.setState({ anchorEl: event.currentTarget });
   };
@@ -28,25 +29,30 @@ class HeaderMenu extends Component {
   };
   render() {
     const { anchorEl } = this.state;
-    const { classes } = this.props;
+    const { classes, logoutMutation } = this.props;
+    const path = window.location.pathname;
     return (
       <div className={classes.root}>
         <AppBar position="fixed">
           <Toolbar className={classes.topToolBar}>
-            <IconButton>
+            <IconButton component={Link} to="/items">
               <img src={logo} alt="Boomtown logo" className={classes.logo} />
             </IconButton>
             <div className={classes.grow} />
-            <Button
-              variant="text"
-              color="primary"
-              disableFocusRipple={true}
-              disableRipple={true}
-              className={classes.buttonLeft}
-            >
-              <AddIcon className={classes.leftAddIcon} />
-              SHARE SOMETHING
-            </Button>
+            {path === '/share' ? null : (
+              <Button
+                variant="text"
+                color="primary"
+                disableFocusRipple={true}
+                disableRipple={true}
+                className={classes.buttonLeft}
+                component={Link}
+                to="/share"
+              >
+                <AddIcon className={classes.leftAddIcon} />
+                SHARE SOMETHING
+              </Button>
+            )}
 
             <div>
               <Button
@@ -67,8 +73,29 @@ class HeaderMenu extends Component {
                 open={Boolean(anchorEl)}
                 onClose={this.handleClose}
               >
-                <MenuItem onClick={this.handleClose}><img src={fingerLogo} alt="profile logo" className={classes.menulogo}/>Profile</MenuItem>
-                <MenuItem onClick={this.handleClose}><img src={powerLogo} alt="log out logo" className={classes.menulogo}/>Logout</MenuItem>
+                <MenuItem
+                  onClick={this.handleClose}
+                  component={Link}
+                  to="/profile"
+                >
+                  <img
+                    src={fingerLogo}
+                    alt="profile logo"
+                    className={classes.menulogo}
+                  />Profile
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    logoutMutation().catch(error => window.alert(error));
+                    this.setState({ anchorEl: null });
+                  }}
+                >
+                  <img
+                    src={powerLogo}
+                    alt="log out logo"
+                    className={classes.menulogo}
+                  />Logout
+                </MenuItem>
               </Menu>
             </div>
           </Toolbar>
@@ -77,4 +104,17 @@ class HeaderMenu extends Component {
     );
   }
 }
-export default withStyles(styles)(HeaderMenu);
+const refetchQueries = [
+  {
+    query: VIEWER_QUERY
+  }
+];
+export default compose(
+  graphql(LOGOUT_MUTATION, {
+    options: {
+      refetchQueries
+    },
+    name: 'logoutMutation'
+  }),
+  withStyles(styles)
+)(HeaderMenu);
