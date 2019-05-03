@@ -1,26 +1,43 @@
-import React, { Fragment } from 'react';
-import { Redirect, Route, Switch } from 'react-router';
-import HeaderMenu from '../components/HeaderMenu'
+import React from 'react';
+import { Route, Redirect, Switch } from 'react-router';
 import Home from '../pages/Home';
-import ItemsContainer from '../pages/Items';
-import ProfileContainer from '../pages/Profile';
-import ShareContainer from '../pages/Share';
+import Items from '../pages/Items';
+import Profile from '../pages/Profile';
+import Share from '../pages/Share';
+import { ViewerContext } from '../context/ViewerProvider';
+import FullScreenLoader from '../components/FullScreenLoader';
+import HeaderMenu from '../components/HeaderMenu';
+import PRoute from '../components/PrivateRoute';
+
 export default () => (
-  <Fragment>
-    <HeaderMenu/>
-    <Switch>
-      <Route path="/items" component={ItemsContainer} />
-      <Route path="/welcome" component={Home} />
-      <Route path="/profile" component={ProfileContainer} />
-      <Route path="/profile/:userid" component={ProfileContainer} />
-      <Route path="/share" component={ShareContainer} />
-      <Redirect  to="/items" />
-      
-      {/**
-       * @TODO: 
-       * Later, we'll add logic to send users to one set of routes if they're logged in,
-       * or only view the /welcome page if they are not.
-       */}
-    </Switch>
-  </Fragment>
+  <ViewerContext.Consumer>
+    {({ loading, viewer }) => {
+      if (loading) return <FullScreenLoader />;
+      if (!viewer) {
+        return (
+          <Switch>
+            <Route exact path="/welcome" name="home" component={Home} />
+            <Redirect from="*" to="/welcome" />
+          </Switch>
+        );
+      }
+      return (
+        <React.Fragment>
+          <HeaderMenu />
+          <Switch>
+            <PRoute exact path="/items" name="items" component={Items} />
+            <PRoute exact path="/profile" name="profile" component={Profile} />
+            <PRoute
+              exact
+              path="/profile/:userId"
+              name="profile"
+              component={Profile}
+            />
+            <PRoute exact path="/share" name="share" component={Share} />
+            <Redirect from="*" to="/items" />
+          </Switch>
+        </React.Fragment>
+      );
+    }}
+  </ViewerContext.Consumer>
 );
