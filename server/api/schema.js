@@ -1,6 +1,7 @@
 const { gql } = require('apollo-server-express');
 
 module.exports = gql`
+scalar Date
 directive @auth on OBJECT | FIELD_DEFINITION
 type Item @auth {
   id: ID!
@@ -9,7 +10,7 @@ type Item @auth {
   description: String!
   itemowner: User!
   tags: [Tag]
-  created: String!
+  created: Date!
   borrower: User
 }
 
