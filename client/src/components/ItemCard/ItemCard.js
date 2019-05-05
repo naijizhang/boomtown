@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 function ItemCard({ classes, item, breakpoints }) {
   const dateToStore = new Date(item.created);
   const momentDate = moment(dateToStore);
@@ -28,6 +29,8 @@ function ItemCard({ classes, item, breakpoints }) {
           className={classes.cardMedia}
           image={item.imageurl}
           title="Image title"
+          component={Link} 
+          to={"/profile/"+item.itemowner.id}
         />
         <CardHeader
           avatar={
