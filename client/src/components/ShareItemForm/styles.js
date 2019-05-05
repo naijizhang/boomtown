@@ -11,15 +11,17 @@ const styles = theme => ({
   shortItem: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    marginTop:20,
+    marginTop: 20,
     width: 100
   },
-  heading:{
+  heading: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: '100%'
+  },
+  donelogo: {
+    display:'inline-flex',
   }
-
 });
 
 export default styles;

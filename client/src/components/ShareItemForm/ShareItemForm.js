@@ -21,6 +21,13 @@ import { Mutation } from 'react-apollo';
 import validate from './helpers/validation';
 import { ADD_ITEM_MUTATION } from '../../apollo/queries';
 import { withRouter } from 'react-router';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import doneLogo from '../../images/baseline-cloud_done.svg';
+import { Link } from 'react-router-dom';
 
 class ShareForm extends Component {
   constructor(props) {
@@ -29,9 +36,13 @@ class ShareForm extends Component {
     this.state = {
       fileSelected: false,
       done: false,
-      selectedTags: []
+      selectedTags: [],
+      openPopup: false
     };
   }
+  handlePopupOpen = () => {
+    this.setState({ openPopup: true });
+  };
   hangleSelectTag = event => {
     this.setState({
       selectedTags: event.target.value
@@ -101,10 +112,10 @@ class ShareForm extends Component {
     try {
       const newItem = {
         ...values,
-        tags: this.applyTags(tags),
+        tags: this.applyTags(tags)
       };
       await addItem({ variables: { item: newItem } }).then(() =>
-        this.props.history.push('/items')
+        this.setState({ openPopup: true })
       );
     } catch (e) {
       throw Error(e);
@@ -131,7 +142,14 @@ class ShareForm extends Component {
               onSubmit={values => {
                 this.saveItem(values, tags, addItem);
               }}
-              render={({ handleSubmit, pristine, invalid, form, values }) => (
+              render={({
+                handleSubmit,
+                reset,
+                pristine,
+                invalid,
+                form,
+                values
+              }) => (
                 <form onSubmit={handleSubmit} className={classes.container}>
                   <FormSpy
                     subscription={{ values: true }}
@@ -175,7 +193,7 @@ class ShareForm extends Component {
                           id="item-name"
                           label="Name your item"
                           className={classes.longItem}
-                          //value={input.value}
+                          value={input.value}
                           onChange={input.onChange}
                           margin="normal"
                         />
@@ -194,7 +212,7 @@ class ShareForm extends Component {
                           //defaultValue="Default Value"
                           className={classes.longItem}
                           margin="normal"
-                          //value={input.value}
+                          value={input.value}
                           onChange={input.onChange}
                         />
                       )}
@@ -250,6 +268,50 @@ class ShareForm extends Component {
                     >
                       SHARE
                     </Button>
+                    <Dialog
+                      open={this.state.openPopup}
+                      onClose={this.handleClose}
+                      aria-labelledby="alert-dialog-title"
+                      aria-describedby="alert-dialog-description"
+                    >
+                      <DialogTitle id="alert-dialog-title">
+                        <div className={classes.donelogo}>
+                          <img src={doneLogo} alt="done logo" />{' '}
+                          {' Your item was added!'}
+                        </div>
+                      </DialogTitle>
+                      <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                          You may add another item if you like. To add another
+                          item click 'Add another item'. To view your item,
+                          click 'Back to items page'.
+                        </DialogContentText>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button
+                          onClick={() => {
+                            this.props.resetItem();
+                            this.resetFileInput();
+                            form.reset();
+                            this.setState({
+                              openPopup: false,
+                              selectedTags: []
+                            });
+                          }}
+                          color="primary"
+                        >
+                          ADD ANOTHER ITEM
+                        </Button>
+                        <Button
+                          color="secondary"
+                          autoFocus
+                          component={Link}
+                          to="/items"
+                        >
+                          BACK TO ITEMS PAGE
+                        </Button>
+                      </DialogActions>
+                    </Dialog>
                   </div>
                 </form>
               )}
