@@ -28,6 +28,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import doneLogo from '../../images/baseline-cloud_done.svg';
 import { Link } from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
 
 class ShareForm extends Component {
   constructor(props) {
@@ -142,6 +143,7 @@ class ShareForm extends Component {
               onSubmit={values => {
                 this.saveItem(values, tags, addItem);
               }}
+              validate={validate}
               render={({
                 handleSubmit,
                 reset,
@@ -167,7 +169,9 @@ class ShareForm extends Component {
                         <div>
                           <Button
                             variant="contained"
-                            color="primary"
+                            color={this.state.fileSelected
+                              ? "default"
+                              : "primary"}
                             className={classes.longItem}
                             onClick={this.triggerInputImage}
                           >
@@ -189,6 +193,7 @@ class ShareForm extends Component {
                     <Field
                       name="title"
                       render={({ input, meta }) => (
+                        <div>
                         <TextField
                           id="item-name"
                           label="Name your item"
@@ -197,6 +202,8 @@ class ShareForm extends Component {
                           onChange={input.onChange}
                           margin="normal"
                         />
+                         {meta.error && meta.touched && <Typography color='error' className={classes.errorMessage}>{meta.error}</Typography>}
+                        </div>
                       )}
                     />
                   </div>
@@ -265,6 +272,7 @@ class ShareForm extends Component {
                       className={classes.shortItem}
                       component="button"
                       type="submit"
+                      disabled={pristine || invalid}
                     >
                       SHARE
                     </Button>

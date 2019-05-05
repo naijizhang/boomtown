@@ -1,3 +1,4 @@
+import red from '@material-ui/core/colors/red';
 const styles = theme => ({
   container: {
     display: 'flex',
@@ -20,7 +21,10 @@ const styles = theme => ({
     width: '100%'
   },
   donelogo: {
-    display:'inline-flex',
+    display: 'inline-flex'
+  },
+  errorMessage: {
+    marginLeft: theme.spacing.unit
   }
 });
 
