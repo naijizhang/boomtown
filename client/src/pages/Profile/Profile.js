@@ -1,13 +1,30 @@
 import React from 'react';
-
-const Profile = ({ classes }) => {
+import ProfileCard from '../../components/ProfileCard';
+import ItemsGrid from '../../components/ItemsGrid';
+import { withStyles } from '@material-ui/core/styles';
+import styles from './styles';
+import Typography from '@material-ui/core/Typography';
+const Profile = ({ classes, user }) => {
+  console.log(user);
   return (
-    <div>
-      <p>
-        This is the profile page located at <code>/profile/:userId</code>.
-      </p>
+    <div className={classes.layout}>
+      <div>
+        <ProfileCard
+          userInfo={{
+            fullname: user.fullname,
+            email: user.email,
+            bio: user.bio,
+            ownItemNumber: user.items.length,
+            borrowItemNumber: user.borrowed.length
+          }}
+        />
+      </div>
+      <div className={classes.itemsContainer}>
+        {user.items.length!==0 ?  <Typography variant="display1" className={classes.heading}>Shared Items</Typography> : null}
+        <ItemsGrid items={user.items} />
+      </div>
     </div>
   );
 };
 
-export default Profile;
+export default withStyles(styles)(Profile);
