@@ -5,7 +5,6 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 import Typography from '@material-ui/core/Typography';
 const Profile = ({ classes, user }) => {
-  console.log(user);
   return (
     <div className={classes.layout}>
       <div>

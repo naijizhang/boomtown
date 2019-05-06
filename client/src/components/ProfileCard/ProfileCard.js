@@ -9,7 +9,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 
 function ItemsGrid({ classes, userInfo }) {
-  console.log('userInfo', userInfo);
   return (
     <div>
       <Card className={classes.card}>

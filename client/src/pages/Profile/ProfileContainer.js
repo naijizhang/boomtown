@@ -8,7 +8,6 @@ import { ALL_USER_ITEMS_QUERY } from '../../apollo/queries';
 import { ViewerContext } from '../../context/ViewerProvider';
 function ProfileContainer({classes,match }) {
   const userIdFromUrl = match.params.userId;
-  console.log(userIdFromUrl);
   return (
     <ViewerContext.Consumer>
       {({ loading, viewer }) => {
