@@ -7,10 +7,10 @@ import styles from './styles';
 const Share = ({ classes,tags }) => {
   return (
     <div className={classes.profileContainer}>
-      <div className={classes.eachColumn}>
+      <div className={classes.leftColumn}>
         <ShareItemPreview />
       </div>
-      <div className={classes.eachColumn}>
+      <div className={classes.rightColumn}>
         <ShareItemForm tags={tags? tags :[]}/>
       </div>
     </div>

@@ -43,7 +43,6 @@ function ItemCard({ classes, item, breakpoints }) {
         />
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom variant="title" component="h2">
-            {/* variant:    "display4","display3","display2","display1","headline","title","subheading","body2","body1","caption","button" */}
             {item.title}
           </Typography>
           <Typography className={classes.tag}>

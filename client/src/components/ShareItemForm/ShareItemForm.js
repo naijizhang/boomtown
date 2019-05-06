@@ -138,7 +138,7 @@ class ShareForm extends Component {
       <Mutation mutation={ADD_ITEM_MUTATION}>
         {(addItem, { data }) => (
           <div>
-            <h1 className={classes.heading}>Share. Borrow. Prosper.</h1>
+            <Typography variant='display2' color='secondary' className={classes.heading}>Share. Borrow. Prosper.</Typography>
             <Form
               onSubmit={values => {
                 this.saveItem(values, tags, addItem);
