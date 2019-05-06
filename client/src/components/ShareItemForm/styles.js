@@ -7,7 +7,7 @@ const styles = theme => ({
   longItem: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    marginTop: 15,
+    marginTop: 5,
     width: '100%'
   },
   shortItem: {
