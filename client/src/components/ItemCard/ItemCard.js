@@ -43,7 +43,7 @@ function ItemCard({ classes, item, breakpoints }) {
           subheader={momentDate.fromNow()}
         />
         <CardContent className={classes.cardContent}>
-          <Typography gutterBottom variant="title" component="h2">
+          <Typography gutterBottom variant="h5">
             {item.title}
           </Typography>
           <Typography className={classes.tag}>

@@ -5,7 +5,7 @@ import { ViewerContext } from '../../context/ViewerProvider';
 const mapStateToProps = ({ shareItemPreview }) => ({
   shareItemPreview
 });
-
+import PropTypes from 'prop-types';
 function ShareItemPreview({ shareItemPreview }) {
   return (
     <ViewerContext.Consumer>
@@ -27,4 +27,7 @@ function ShareItemPreview({ shareItemPreview }) {
     </ViewerContext.Consumer>
   );
 }
+ShareItemPreview.propTypes = {
+  shareItemPreview: PropTypes.object.isRequired
+};
 export default connect(mapStateToProps)(ShareItemPreview);

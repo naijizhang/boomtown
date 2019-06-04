@@ -7,8 +7,8 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import logo from '../../images/boomtown.svg';
-import fingerLogo from '../../images/finger.svg';
-import powerLogo from '../../images/power.svg';
+import Fingerprint from '@material-ui/icons/Fingerprint';
+import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
@@ -16,6 +16,7 @@ import { Link } from 'react-router-dom';
 import { LOGOUT_MUTATION, VIEWER_QUERY } from '../../apollo/queries';
 import { graphql, compose } from 'react-apollo';
 import { ViewerContext } from '../../context/ViewerProvider';
+import PropTypes from 'prop-types';
 class HeaderMenu extends Component {
   state = {
     anchorEl: null
@@ -86,13 +87,9 @@ class HeaderMenu extends Component {
                         to={{
                           pathname: '/profile/' + viewer.id
                         }}
-                        onClick={() => window.location.refresh()}
+                        onClick={this.handleClose}
                       >
-                        <img
-                          src={fingerLogo}
-                          alt="profile logo"
-                          className={classes.menulogo}
-                        />Profile
+                        <Fingerprint className={classes.menuLogo} />Profile
                       </MenuItem>
                       <MenuItem
                         onClick={() => {
@@ -100,11 +97,7 @@ class HeaderMenu extends Component {
                           this.setState({ anchorEl: null });
                         }}
                       >
-                        <img
-                          src={powerLogo}
-                          alt="log out logo"
-                          className={classes.menulogo}
-                        />Logout
+                        <PowerSettingsNew className={classes.menuLogo} />Logout
                       </MenuItem>
                     </Menu>
                   </div>
@@ -122,6 +115,10 @@ const refetchQueries = [
     query: VIEWER_QUERY
   }
 ];
+HeaderMenu.propTypes = {
+  classes: PropTypes.object.isRequired,
+  logoutMutation: PropTypes.func.isRequired
+};
 export default compose(
   graphql(LOGOUT_MUTATION, {
     options: {

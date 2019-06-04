@@ -20,7 +20,7 @@ const Profile = ({ classes, user }) => {
         />
       </div>
       <div className={classes.itemsContainer}>
-        {user.items.length!==0 ?  <Typography variant="display1" className={classes.heading}>Shared Items</Typography> : null}
+        {user.items.length!==0 ?  <Typography variant="h4" className={classes.heading}>Shared Items</Typography> : null}
         <ItemsGrid items={user.items} />
       </div>
     </div>

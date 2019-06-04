@@ -25,6 +25,9 @@ const styles = theme => ({
   donelogo: {
     display: 'inline-flex'
   },
+  cloudlogo:{
+    marginRight:15
+  },
   errorMessage: {
     marginLeft: theme.spacing.unit
   }

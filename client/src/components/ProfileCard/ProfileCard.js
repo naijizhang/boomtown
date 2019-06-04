@@ -22,12 +22,12 @@ function ItemsGrid({ classes, userInfo }) {
           titleTypographyProps={{ variant: 'display2' }}
         />
         <CardContent>
-          <Typography gutterBottom variant="title" component="h2">
+          <Typography gutterBottom variant="h5">
             <strong>{userInfo.ownItemNumber}</strong> Items shared{' '}
             <strong>{userInfo.borrowItemNumber}</strong> Items borrowed
           </Typography>
 
-          <Typography variant="subheading">{userInfo.bio?userInfo.bio:`"No bio provided."`}</Typography>
+          <Typography variant="subtitle1">{userInfo.bio?userInfo.bio:`"No bio provided."`}</Typography>
         </CardContent>
       </Card>
     </div>

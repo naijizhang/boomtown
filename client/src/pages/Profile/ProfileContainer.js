@@ -7,7 +7,7 @@ import { Query } from 'react-apollo';
 import { ALL_USER_ITEMS_QUERY } from '../../apollo/queries';
 import { ViewerContext } from '../../context/ViewerProvider';
 import PropTypes from 'prop-types';
-function ProfileContainer({classes,match }) {
+function ProfileContainer({ classes, match }) {
   const userIdFromUrl = match.params.userId;
   return (
     <ViewerContext.Consumer>
@@ -16,6 +16,7 @@ function ProfileContainer({classes,match }) {
           <Query
             query={ALL_USER_ITEMS_QUERY}
             variables={{ id: userIdFromUrl ? userIdFromUrl : viewer.id }}
+            fetchPolicy="network-only"
           >
             {({ loading, error, data }) => {
               if (loading) return <FullScreenLoader />;

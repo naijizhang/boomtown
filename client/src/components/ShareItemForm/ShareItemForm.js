@@ -26,9 +26,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import doneLogo from '../../images/baseline-cloud_done.svg';
+import CloudDone from '@material-ui/icons/CloudDone';
 import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
 
 class ShareForm extends Component {
   constructor(props) {
@@ -138,7 +139,13 @@ class ShareForm extends Component {
       <Mutation mutation={ADD_ITEM_MUTATION}>
         {(addItem, { data }) => (
           <div>
-            <Typography variant='display2' color='secondary' className={classes.heading}>Share. Borrow. Prosper.</Typography>
+            <Typography
+              variant="h3"
+              color="secondary"
+              className={classes.heading}
+            >
+              Share. Borrow. Prosper.
+            </Typography>
             <Form
               onSubmit={values => {
                 this.saveItem(values, tags, addItem);
@@ -169,9 +176,9 @@ class ShareForm extends Component {
                         <div>
                           <Button
                             variant="contained"
-                            color={this.state.fileSelected
-                              ? "default"
-                              : "primary"}
+                            color={
+                              this.state.fileSelected ? 'default' : 'primary'
+                            }
                             className={classes.longItem}
                             onClick={this.triggerInputImage}
                           >
@@ -194,15 +201,23 @@ class ShareForm extends Component {
                       name="title"
                       render={({ input, meta }) => (
                         <div>
-                        <TextField
-                          id="item-name"
-                          label="Name your item"
-                          className={classes.longItem}
-                          value={input.value}
-                          onChange={input.onChange}
-                          margin="normal"
-                        />
-                         {meta.error && meta.touched && <Typography color='error' className={classes.errorMessage}>{meta.error}</Typography>}
+                          <TextField
+                            id="item-name"
+                            label="Name your item"
+                            className={classes.longItem}
+                            value={input.value}
+                            onChange={input.onChange}
+                            margin="normal"
+                          />
+                          {meta.error &&
+                            meta.touched && (
+                              <Typography
+                                color="error"
+                                className={classes.errorMessage}
+                              >
+                                {meta.error}
+                              </Typography>
+                            )}
                         </div>
                       )}
                     />
@@ -284,7 +299,7 @@ class ShareForm extends Component {
                     >
                       <DialogTitle id="alert-dialog-title">
                         <div className={classes.donelogo}>
-                          <img src={doneLogo} alt="done logo" />{' '}
+                          <CloudDone className={classes.cloudlogo} />{' '}
                           {' Your item was added!'}
                         </div>
                       </DialogTitle>
@@ -341,7 +356,13 @@ const mapDispatchToProps = dispatch => ({
     dispatch(resetImage());
   }
 });
-
+ShareForm.propTypes = {
+  classes: PropTypes.object.isRequired,
+  tags: PropTypes.array.isRequired,
+  updateItem: PropTypes.func.isRequired,
+  resetImage: PropTypes.func.isRequired,
+  resetItem: PropTypes.func.isRequired
+};
 export default connect(
   null,
   mapDispatchToProps

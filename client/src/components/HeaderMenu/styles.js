@@ -43,7 +43,7 @@ const styles = theme => ({
     fontSize: 20,
     padding: 1
   },
-  menulogo:{
+  menuLogo:{
    marginRight:15
   }
 });
