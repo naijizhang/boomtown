@@ -29,7 +29,7 @@ class AccountForm extends Component {
     return (
       <Form
         onSubmit={values => {
-          this.state.error=null;
+          this.setState({ error: null });
           const user = { variables: { user: values } };
           this.state.formToggle
             ? loginMutation(user).catch(error => this.setState({ error }))
@@ -139,21 +139,21 @@ class AccountForm extends Component {
 }
 const refetchQueries = [
   {
-    query: VIEWER_QUERY,
-  },
+    query: VIEWER_QUERY
+  }
 ];
 export default compose(
   graphql(SIGNUP_MUTATION, {
     options: {
-      refetchQueries,
+      refetchQueries
     },
-    name: 'signupMutation',
+    name: 'signupMutation'
   }),
   graphql(LOGIN_MUTATION, {
     options: {
-      refetchQueries,
+      refetchQueries
     },
-    name: 'loginMutation',
+    name: 'loginMutation'
   }),
-  withStyles(styles),
+  withStyles(styles)
 )(AccountForm);

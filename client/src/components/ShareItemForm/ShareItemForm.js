@@ -123,7 +123,7 @@ class ShareForm extends Component {
     }
   }
   render() {
-    const { classes, tags, updateItem, history } = this.props;
+    const { classes, tags, updateItem } = this.props;
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 8;
     const MenuProps = {

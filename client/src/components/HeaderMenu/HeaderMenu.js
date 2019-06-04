@@ -82,7 +82,6 @@ class HeaderMenu extends Component {
                       onClose={this.handleClose}
                     >
                       <MenuItem
-                        onClick={this.handleClose}
                         component={Link}
                         to={{
                           pathname: '/profile/' + viewer.id
