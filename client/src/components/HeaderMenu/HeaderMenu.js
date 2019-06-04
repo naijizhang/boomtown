@@ -84,7 +84,10 @@ class HeaderMenu extends Component {
                       <MenuItem
                         onClick={this.handleClose}
                         component={Link}
-                        to={'/profile/' + viewer.id}
+                        to={{
+                          pathname: '/profile/' + viewer.id
+                        }}
+                        onClick={() => window.location.refresh()}
                       >
                         <img
                           src={fingerLogo}
