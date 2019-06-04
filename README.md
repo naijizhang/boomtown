@@ -22,26 +22,29 @@ A overview of all the pages and their functions.
 
 On this page user can login with a account or create a new account. The two forms can switch by the link under the form. The AppBar doesn't show up on this page. The user cannot go to any other pages before login.
 
-<img src="./docs/login.png" style="width: 100%;" />
+<img src="./images/login.png" style="width: 100%;" />
 
 ### Items Page
 
 On Items page, the user can get the information of all the items from other users. Click the image on each card can go to the item owner's profile page.
 
-<img src="./docs/items.png" style="width: 100%;" />
+<img src="./images/items.png" style="width: 100%;" />
 
 ### Share Page
 
 User can go to share new item page by clicking the button on the other pages' AppBar. On the share page, there is a preview of the new item that will be created. The preview can be dynamically updated while user typing or selecting image or tags in the right input forms. When the forms are filled, the share button will be enabled and popup a dialog to choose to add another new item or go to items page. 
 
-<img src="./docs/share.png" style="width: 100%;" />
+<img src="./images/share.png" style="width: 100%;" />
 
 ### Profile Page
 
 On profile page, user can see the brief information like name and bio, and a summary of all the items the user owned or borrowed.
 
-<img src="./docs/profile.png" style="width: 100%;" />
+<img src="./images/profile.png" style="width: 100%;" />
 
+
+# Installation & Run
+---
 ## Server
 
 Commands must be run from the `server` directory:
@@ -49,45 +52,13 @@ Commands must be run from the `server` directory:
 ### Installation
 
 ```bash
-npm install
+yarn
 ```
 
 ### Run
 
 ```bash
-npm run start:dev
-```
-
-### Tests
-
-Just linting:
-
-```bash
-npm run lint
-```
-
-Run linting, and fix any errors:
-
-```bash
-npm run lint:fix
-```
-
-Run Jest tests:
-
-```
-npm run jest
-```
-
-Run Jest tests, and watch for changes:
-
-```bash
-npm run jest:watch
-```
-
-Run all tests:
-
-```bash
-npm run test
+yarn run start:dev
 ```
 
 ## Client
@@ -97,39 +68,12 @@ Commands must be run from the `client` directory:
 ### Installation
 
 ```bash
-npm install
+yarn
 ```
 
 ### Run
 
 ```bash
-npm start
+yarn start
 ```
-
-### Build
-
-```bash
-npm run build
-```
-
-### Tests
-
-Just linting:
-
-```bash
-npm run lint
-```
-
-Run linting, and fix any errors:
-
-```bash
-npm run lint:fix
-```
-
-Run all tests:
-
-```bash
-npm run test
-```
-
 
