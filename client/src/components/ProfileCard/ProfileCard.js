@@ -7,7 +7,7 @@ import Gravatar from 'react-gravatar';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
-
+import PropTypes from 'prop-types';
 function ItemsGrid({ classes, userInfo }) {
   return (
     <div>
@@ -33,4 +33,8 @@ function ItemsGrid({ classes, userInfo }) {
     </div>
   );
 }
+ItemsGrid.propTypes = {
+  classes: PropTypes.object.isRequired,
+  userInfo: PropTypes.object.isRequired
+};
 export default withStyles(styles)(ItemsGrid);

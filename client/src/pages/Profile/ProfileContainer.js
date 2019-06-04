@@ -6,6 +6,7 @@ import FullScreenLoader from '../../components/FullScreenLoader';
 import { Query } from 'react-apollo';
 import { ALL_USER_ITEMS_QUERY } from '../../apollo/queries';
 import { ViewerContext } from '../../context/ViewerProvider';
+import PropTypes from 'prop-types';
 function ProfileContainer({classes,match }) {
   const userIdFromUrl = match.params.userId;
   return (
@@ -27,5 +28,9 @@ function ProfileContainer({classes,match }) {
     </ViewerContext.Consumer>
   );
 }
+ProfileContainer.propTypes = {
+  classes: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired
+};
 
 export default withStyles(styles)(ProfileContainer);

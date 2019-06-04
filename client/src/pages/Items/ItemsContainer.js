@@ -6,7 +6,8 @@ import FullScreenLoader from '../../components/FullScreenLoader';
 import { Query } from 'react-apollo';
 import { ALL_ITEMS_QUERY } from '../../apollo/queries';
 import { ViewerContext } from '../../context/ViewerProvider';
-function ItemsContainer({ classes }) {
+import PropTypes from 'prop-types';
+const ItemsContainer = ({ classes }) => {
   return (
     <ViewerContext.Consumer>
       {({ loading, viewer }) => {
@@ -22,6 +23,9 @@ function ItemsContainer({ classes }) {
       }}
     </ViewerContext.Consumer>
   );
-}
+};
+ItemsContainer.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
 export default withStyles(styles)(ItemsContainer);

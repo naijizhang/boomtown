@@ -4,6 +4,7 @@ import ItemsGrid from '../../components/ItemsGrid';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
 const Profile = ({ classes, user }) => {
   return (
     <div className={classes.layout}>
@@ -24,6 +25,10 @@ const Profile = ({ classes, user }) => {
       </div>
     </div>
   );
+};
+Profile.propTypes = {
+  classes: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(Profile);

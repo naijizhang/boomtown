@@ -13,6 +13,7 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 function ItemCard({ classes, item, breakpoints }) {
   const dateToStore = new Date(item.created);
   const momentDate = moment(dateToStore);
@@ -29,8 +30,8 @@ function ItemCard({ classes, item, breakpoints }) {
           className={classes.cardMedia}
           image={item.imageurl}
           title="Image title"
-          component={Link} 
-          to={"/profile/"+item.itemowner.id}
+          component={Link}
+          to={'/profile/' + item.itemowner.id}
         />
         <CardHeader
           avatar={
@@ -60,4 +61,9 @@ function ItemCard({ classes, item, breakpoints }) {
   );
 }
 
+ItemCard.propTypes = {
+  classes: PropTypes.object.isRequired,
+  item: PropTypes.object.isRequired,
+  breakpoints: PropTypes.object.isRequired
+};
 export default withStyles(styles)(ItemCard);
